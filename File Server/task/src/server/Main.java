@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-  public static void main(String[] args) {
+  public static void options() {
     Stage1 stage1 = new Stage1();
     Scanner scanner = new Scanner(System.in);
     String command, filename;
