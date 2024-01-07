@@ -97,8 +97,14 @@ public class Client {
     String option = scanner.nextLine();
     String optionName;
     switch (option) {
-      case "1" -> optionName = "name";
-      case "2" -> optionName = "id";
+      case "1" -> {
+        optionName = "name";
+        System.out.print("Enter name: ");
+      }
+      case "2" -> {
+        optionName = "id";
+        System.out.print("Enter id: ");
+      }
       default -> throw new RuntimeException("Incorrect option value");
     }
     String optionValue = scanner.nextLine();
