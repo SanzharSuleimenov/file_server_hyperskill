@@ -125,7 +125,6 @@ public class Client {
     }
     System.out.print("Enter name of the file to be saved on server: ");
     String saveFilename = scanner.nextLine();
-    // todo: move name generation to server side
     if (saveFilename.isBlank()) {
       saveFilename = "custom_" + random.nextInt(1000) + "_" + System.currentTimeMillis();
     }
