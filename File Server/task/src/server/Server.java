@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 public class Server implements Serializable {
 
   public static final String RESOURCE_PATH;
-  private final FileService fileService = new FileService();
 
   static {
     RESOURCE_PATH = System.getProperty("user.dir") +
@@ -29,6 +28,8 @@ public class Server implements Serializable {
     dir.mkdirs();
   }
 
+  private final FileService fileService = new FileService();
+
   public static void main(String[] args) throws InterruptedException {
     Server server = new Server();
     server.menu();
@@ -41,6 +42,7 @@ public class Server implements Serializable {
     try (ServerSocket serverSocket =
         new ServerSocket(8080, 50, InetAddress.getByName("localhost"))) {
       System.out.println("Server started!");
+      fileService.deserializeFileServiceData();
       while (!serverSocket.isClosed()) {
         Socket socket = serverSocket.accept();
         String method = new DataInputStream(socket.getInputStream()).readUTF();
