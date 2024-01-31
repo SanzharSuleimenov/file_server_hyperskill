@@ -3,17 +3,17 @@ hyperskill_project:
   ide_files: https://cogniterra.org/media/attachments/lesson/23034/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Fri, 01 Dec 2023 18:47:46 UTC"
+update_date: "Tue, 19 Dec 2023 03:24:49 UTC"
 stages:
   - id: 283
     step: 5425
     is_completed: true
   - id: 284
     step: 5426
-    is_completed: false
+    is_completed: true
   - id: 285
     step: 5427
-    is_completed: false
+    is_completed: true
   - id: 286
     step: 5428
     is_completed: false
@@ -91,12 +91,10 @@ topics:
       theory_id: 3536
     - title: First glance at exceptions
       theory_id: 3497
-    - title: What is object-oriented programming
-      theory_id: 3614
-    - title: Grouping classes with packages
-      theory_id: 3621
     - title: Hierarchy of exceptions
       theory_id: 3570
+    - title: What is object-oriented programming
+      theory_id: 3614
     - title: What are bugs
       theory_id: 5504
     - title: Formatted output
@@ -111,6 +109,8 @@ topics:
       theory_id: 37202
     - title: Defining classes
       theory_id: 3618
+    - title: Grouping classes with packages
+      theory_id: 3621
     - title: Instance methods
       theory_id: 3495
     - title: Initializing new instances. Constructor
@@ -148,14 +148,14 @@ topics:
       theory_id: 8977
     - title: Parameters and options
       theory_id: 9746
-    - title: Immutability
-      theory_id: 7929
-    - title: NullPointerException
-      theory_id: 1945
-    - title: Exception handling
-      theory_id: 3552
     - title: Running programs on your computer
       theory_id: 3746
+    - title: Immutability
+      theory_id: 7929
+    - title: Exception handling
+      theory_id: 3552
+    - title: NullPointerException
+      theory_id: 1945
     - title: Throwing exceptions
       theory_id: 3553
     - title: File class

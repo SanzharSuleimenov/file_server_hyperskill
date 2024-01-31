@@ -1,17 +1,5 @@
 type: edu
 files:
-  - name: src/server/Main.java
-    visible: true
-    text: |-
-      package server;
-      
-      public class Main {
-      
-          public static void main(String[] args) {
-              System.out.println("Hello, world!");
-          }
-      }
-    learner_created: false
   - name: test/FileServerTest.java
     visible: false
     text: |+
@@ -238,6 +226,78 @@ files:
       }
     
     learner_created: false
+  - name: src/client/Client.java
+    visible: true
+    text: |
+      package client;
+      
+      import java.io.DataInputStream;
+      import java.io.DataOutputStream;
+      import java.io.IOException;
+      import java.net.Socket;
+      
+      public class Client {
+      
+        private final static String SENT_MESSAGE = "Give me everything you have!";
+        public static void main(String[] args) {
+          try (
+              Socket socket = new Socket("127.0.0.1", 9090);
+              DataInputStream inputStream = new DataInputStream(socket.getInputStream());
+              DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream())) {
+            System.out.println("Client started!");
+            outputStream.writeUTF(SENT_MESSAGE);
+            System.out.println("Sent: " + SENT_MESSAGE);
+            System.out.println("Received: " + inputStream.readUTF());
+          } catch (IOException e) {
+            System.err.println("IOException reason: " + e.getMessage());
+          } catch (Exception e) {
+            System.err.println("Exception reason: " + e.getMessage());
+          }
+        }
+      }
+    learner_created: true
+  - name: src/server/Server.java
+    visible: true
+    text: |
+      package server;
+      
+      import java.io.DataInputStream;
+      import java.io.DataOutputStream;
+      import java.io.IOException;
+      import java.net.ServerSocket;
+      import java.net.Socket;
+      
+      public class Server {
+      
+        private final static String SENT_MESSAGE = "All files were sent!";
+      
+        public static void main(String[] args) {
+          try (ServerSocket serverSocket = new ServerSocket(9090)) {
+            System.out.println("Server started!");
+            try (
+                Socket socket = serverSocket.accept();
+                DataInputStream inputStream = new DataInputStream(socket.getInputStream());
+                DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream())) {
+              System.out.println("Received: " + inputStream.readUTF());
+              outputStream.writeUTF(SENT_MESSAGE);
+              System.out.println("Sent: " + SENT_MESSAGE);
+            } catch (IOException e) {
+              System.err.println("IOException reason: " + e.getMessage());
+            }
+          } catch (IOException e) {
+            System.err.println("IOException reason: " + e.getMessage());
+          } catch (Exception e) {
+            System.err.println("Exception reason: " + e.getMessage());
+          }
+        }
+      }
+    learner_created: true
+  - name: src/server/data/123.txt
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5427#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Wed, 13 Dec 2023 08:27:44 UTC"
+record: 3

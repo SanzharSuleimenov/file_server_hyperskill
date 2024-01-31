@@ -29,7 +29,7 @@ public class FileService implements GetFile, DeleteFile, SaveFile, Serializable 
       String option = dis.readUTF();
       String optionValue = dis.readUTF();
       if (option.equalsIgnoreCase("id")) {
-        String result = fileIdTable.getFilenameById(Integer.valueOf(optionValue));
+        String result = fileIdTable.getFilenameById(optionValue);
         if (result == null) {
           System.err.printf("File with ID %s not found", optionValue);
           dos.writeInt(404);
@@ -64,9 +64,8 @@ public class FileService implements GetFile, DeleteFile, SaveFile, Serializable 
       String option = dis.readUTF();
       String optionValue = dis.readUTF();
       if (option.equalsIgnoreCase("id")) {
-        String result = fileIdTable.getFilenameById(Integer.valueOf(optionValue));
+        String result = fileIdTable.getFilenameById(optionValue);
         if (result == null) {
-          System.err.printf("File with ID %s not found", optionValue);
           dos.writeInt(404);
           return;
         }
@@ -74,7 +73,6 @@ public class FileService implements GetFile, DeleteFile, SaveFile, Serializable 
       }
       Path filePath = Path.of(RESOURCE_PATH + optionValue);
       if (!Files.exists(filePath)) {
-        System.err.printf("File %s doesn't exist on a server", optionValue);
         dos.writeInt(404);
         return;
       }
@@ -102,10 +100,10 @@ public class FileService implements GetFile, DeleteFile, SaveFile, Serializable 
       byte[] content = inputStream.readNBytes(length);
       String filename = inputStream.readUTF();
       Files.write(Path.of(Server.RESOURCE_PATH + filename), content);
-      int id = fileIdTable.generateFileId(filename);
-      outputStream.writeInt(id);
+      String id = fileIdTable.generateFileId(filename);
+      outputStream.writeUTF(id);
     } catch (IOException e) {
-      System.out.println("Exception: " + e.getMessage());
+      System.err.println("Exception: " + e.getMessage());
       throw new RuntimeException(e);
     } finally {
       try {
@@ -117,13 +115,7 @@ public class FileService implements GetFile, DeleteFile, SaveFile, Serializable 
     }
   }
 
-  private void serializeObject(ObjectOutputStream oos) throws IOException {
-    oos.defaultWriteObject();
-  }
-
-  private void deserializeObject(ObjectInputStream ois)
-      throws IOException, ClassNotFoundException {
-    ois.defaultReadObject();
-    System.out.println("File ID table" + fileIdTable);
+  public void serializeFileServiceData() {
+    fileIdTable.serialize();
   }
 }

@@ -1,136 +1,76 @@
 [1;31m
 Start test 1[0m
-> add file1
-#The file file1 added successfully
-> exit
+Server started!
+JEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > exit
 [1;31m
 Start test 2[0m
-> add file2
-#The file file2 added successfully
-> exit
 [1;31m
 Start test 3[0m
-> add file3
-#The file file3 added successfully
-> exit
+Server started!
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 2
+1Enter name of the file: > test_purpose_test1.txt
+1Enter name of the file to be saved on server: > 
+The request was sent.
+'filename: custom_934_1706690397935.txt
+&Added k:v -> 2101885603011466315:null
+<Response says that file is saved! ID = 2101885603011466315
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 2
+1Enter name of the file: > test_purpose_test2.txt
+IEnter name of the file to be saved on server: > test_purpose_newFile.txt
+The request was sent.
+#filename: test_purpose_newFile.txt
+&Added k:v -> 1032032354269242342:null
+<Response says that file is saved! ID = 1032032354269242342
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 1
+EDo you want to get the file by name or by id (1 - name, 2 - id): > 1
+(Enter name: > test_purpose_notExist.txt
+The request was sent.
+0The response says that this file is not found!
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 1
+EDo you want to get the file by name or by id (1 - name, 2 - id): > 2
+#Enter id: > 2101885603011466315511
+The request was sent.
+0The response says that this file is not found!
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 1
+EDo you want to get the file by name or by id (1 - name, 2 - id): > 1
+'Enter name: > test_purpose_newFile.txt
+The request was sent.
+GThe file was downloaded! Specify a name for it: > test_purpose_get.txt
+File saved on the hard drive!
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 1
+EDo you want to get the file by name or by id (1 - name, 2 - id): > 2
+ Enter id: > 2101885603011466315
+The request was sent.
+JThe file was downloaded! Specify a name for it: > test_purpose_get_id.txt
+File saved on the hard drive!
+JEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > exit
 [1;31m
 Start test 4[0m
-> add file4
-#The file file4 added successfully
-> exit
+Server started!
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 1
+EDo you want to get the file by name or by id (1 - name, 2 - id): > 1
+'Enter name: > test_purpose_newFile.txt
+The request was sent.
+UThe file was downloaded! Specify a name for it: > test_purpose_get_after_restart.txt
+File saved on the hard drive!
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 1
+EDo you want to get the file by name or by id (1 - name, 2 - id): > 2
+ Enter id: > 2101885603011466315
+The request was sent.
+[The file was downloaded! Specify a name for it: > test_purpose_get_by_id_after_restart.txt
+File saved on the hard drive!
+JEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > exit
 [1;31m
 Start test 5[0m
-> add file5
-#The file file5 added successfully
-> exit
-[1;31m
-Start test 6[0m
-> add file6
-#The file file6 added successfully
-> exit
-[1;31m
-Start test 7[0m
-> add file7
-#The file file7 added successfully
-> exit
-[1;31m
-Start test 8[0m
-> add file8
-#The file file8 added successfully
-> exit
-[1;31m
-Start test 9[0m
-> add file9
-#The file file9 added successfully
-> exit
-[1;31m
-Start test 10[0m
-> add file10
-$The file file10 added successfully
-> exit
-[1;31m
-Start test 11[0m
-> add fileWrong
-Cannot add the file fileWrong
-> exit
-[1;31m
-Start test 12[0m
-> add file11
-Cannot add the file file11
-> exit
-[1;31m
-Start test 13[0m
-> add file1
-#The file file1 added successfully
-> add file1
-Cannot add the file file1
-> exit
-[1;31m
-Start test 14[0m
-> get file1
-The file file1 not found
-> exit
-[1;31m
-Start test 15[0m
-> get file2
-The file file2 not found
-> exit
-[1;31m
-Start test 16[0m
-> add file1
-#The file file1 added successfully
-> get file1
-The file file1 was sent
-> exit
-[1;31m
-Start test 17[0m
-> add file2
-#The file file2 added successfully
-> get file2
-The file file2 was sent
-> exit
-[1;31m
-Start test 18[0m
-> delete file1
-The file file1 not found
-> exit
-[1;31m
-Start test 19[0m
-> delete file3
-The file file3 not found
-> exit
-[1;31m
-Start test 20[0m
-> add file1
-#The file file1 added successfully
-> delete file1
-The file file1 was deleted
-> exit
-[1;31m
-Start test 21[0m
-> add file4
-#The file file4 added successfully
-> delete file4
-The file file4 was deleted
-> exit
-[1;31m
-Start test 22[0m
-> add file1
-#The file file1 added successfully
-> delete file1
-The file file1 was deleted
-> get file1
-The file file1 not found
-> exit
-[1;31m
-Start test 23[0m
-> add file1
-#The file file1 added successfully
-> delete file1
-The file file1 was deleted
-> add file1
-#The file file1 added successfully
-> exit
-[1;31m
-Start test 24[0m
-> exit
+Server started!
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 3
+HDo you want to delete the file by name or by id (1 - name, 2 - id): > 1
+'Enter name: > test_purpose_newFile.txt
+The request was sent.
+<The response says that this file was deleted successfully!
+GEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > 3
+HDo you want to delete the file by name or by id (1 - name, 2 - id): > 2
+ Enter id: > 2101885603011466315
+The request was sent.
+<The response says that this file was deleted successfully!
+JEnter action (1 - get a file, 2 - save a file, 3 - delete a file): > exit

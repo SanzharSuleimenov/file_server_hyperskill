@@ -82,6 +82,63 @@ files:
           }
       }
     learner_created: false
+  - name: src/server/Stage1.java
+    visible: true
+    text: |
+      package server;
+      
+      import java.util.HashSet;
+      import java.util.Set;
+      
+      public class Stage1 {
+      
+        private final Set<String> files;
+        private final Set<String> allowedFiles;
+      
+        public Stage1() {
+          this.files = new HashSet<>();
+          this.allowedFiles = new HashSet<>();
+          for (int i = 1; i <= 10; i++) {
+            this.allowedFiles.add("file" + i);
+          }
+        }
+      
+        public void add(String filename) {
+          if (!allowedFiles.contains(filename) || files.contains(filename)) {
+            System.out.println("Cannot add the file " + filename);
+          } else {
+            files.add(filename);
+            System.out.println("The file " + filename + " added successfully");
+          }
+        }
+      
+        public void get(String filename) {
+          if (!files.contains(filename)) {
+            System.out.println("The file " + filename + " not found");
+          } else {
+            System.out.println("The file " + filename + " was sent");
+          }
+        }
+      
+        public void delete(String filename) {
+          if (!files.contains(filename)) {
+            System.out.println("The file " + filename + " not found");
+          } else {
+            System.out.println("The file " + filename + " was deleted");
+            files.remove(filename);
+          }
+        }
+      }
+    learner_created: true
+  - name: src/server/Server.java
+    visible: true
+    learner_created: true
+  - name: src/client/Client.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5426#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 12 Dec 2023 10:08:34 UTC"
+record: 2

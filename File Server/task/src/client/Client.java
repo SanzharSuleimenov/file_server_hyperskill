@@ -8,8 +8,11 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Client {
 
@@ -19,8 +22,8 @@ public class Client {
 
   static {
     RESOURCE_PATH = System.getProperty("user.dir") +
-        File.separator + "File Server" +
-        File.separator + "task" +
+//        File.separator + "File Server" +
+//        File.separator + "task" +
         File.separator + "src" +
         File.separator + "client" +
         File.separator + "data" +
@@ -30,11 +33,12 @@ public class Client {
     dir.mkdirs();
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
     menu();
   }
 
-  private static void menu() {
+  private static void menu() throws InterruptedException {
+    TimeUnit.MILLISECONDS.sleep(500);
     try (
         Socket socket = new Socket(InetAddress.getByName("localhost"), 8080);
         DataInputStream inputStream = new DataInputStream(socket.getInputStream());
@@ -73,7 +77,7 @@ public class Client {
       }
       default -> throw new RuntimeException("Incorrect option value");
     }
-    String optionValue = scanner.nextLine();
+    String optionValue = scanner.nextLine().trim();
     outputStream.writeUTF("get");
     outputStream.writeUTF(optionName);
     outputStream.writeUTF(optionValue);
@@ -88,7 +92,7 @@ public class Client {
     System.out.print("The file was downloaded! Specify a name for it: ");
     String filename = scanner.nextLine();
     Files.write(Path.of(RESOURCE_PATH + filename), content);
-    System.out.println("File save on the hard drive!");
+    System.out.println("File saved on the hard drive!");
   }
 
   private static void deleteFile(DataInputStream inputStream, DataOutputStream outputStream)
@@ -133,13 +137,19 @@ public class Client {
     String saveFilename = scanner.nextLine();
     if (saveFilename.isBlank()) {
       saveFilename = "custom_" + random.nextInt(1000) + "_" + System.currentTimeMillis();
+      saveFilename += getFileExtension(filename);
     }
     outputStream.writeUTF("save"); // represents save action
     outputStream.writeInt((int) file.length());
     outputStream.write(Files.readAllBytes(file.toPath()));
     outputStream.writeUTF(saveFilename);
     System.out.println("The request was sent.");
-    int fileId = inputStream.readInt();
+    String fileId = inputStream.readUTF();
     System.out.println("Response says that file is saved! ID = " + fileId);
+  }
+
+  private static String getFileExtension(String filename) {
+    int pos = filename.lastIndexOf('.');
+    return filename.substring(pos);
   }
 }

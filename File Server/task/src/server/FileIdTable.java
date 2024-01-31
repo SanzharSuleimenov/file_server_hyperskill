@@ -1,25 +1,65 @@
 package server;
 
+import static server.Server.RESOURCE_PATH;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 
 public class FileIdTable implements Serializable {
 
   private static final long serialVersionUID = 1l;
+  private final String SERIALIZED_FILENAME = "serialized-id-table.ser";
 
-  private final Map<Integer, String> table = new HashMap<>();
+  private final Map<String, String> table;
   private transient final Random random = new Random();
 
-  public synchronized int generateFileId(String filename) {
-    int fileId = random.nextInt(Integer.MAX_VALUE);
-    table.put(fileId, filename);
+  public FileIdTable() {
+    if (Files.exists(Path.of(RESOURCE_PATH + SERIALIZED_FILENAME))) {
+      try (
+          FileInputStream fis = new FileInputStream(RESOURCE_PATH + SERIALIZED_FILENAME);
+          ObjectInputStream ois = new ObjectInputStream(fis)
+      ) {
+        this.table = (Map<String, String>) ois.readObject();
+      } catch (IOException | ClassNotFoundException e) {
+        System.err.println("ID Table deserialization exception: " + e.getMessage());
+        throw new RuntimeException(e.getMessage());
+      }
+    } else {
+      this.table = new HashMap<>();
+    }
+  }
+
+  public synchronized String generateFileId(String filename) {
+    String fileId = String.valueOf(random.nextLong(Long.MAX_VALUE));
+    var result = table.put(fileId, filename);
+    System.out.printf("filename: %s\n", filename);
+    System.out.printf("Added k:v -> %s:%s\n", fileId, result);
     return fileId;
   }
 
-  public String getFilenameById(Integer id) {
+  public String getFilenameById(String id) {
     return table.get(id);
+  }
+
+  public void serialize() {
+    try (
+        FileOutputStream fos = new FileOutputStream(RESOURCE_PATH + SERIALIZED_FILENAME);
+        ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+      oos.writeObject(table);
+    } catch (IOException e) {
+      System.err.println("ID Table serialization exception: " + e.getMessage());
+      throw new RuntimeException(e.getMessage());
+    }
   }
 
   @Override

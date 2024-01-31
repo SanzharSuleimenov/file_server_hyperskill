@@ -11,6 +11,35 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/File Server/task" />
+            <option value="$PROJECT_DIR$/File Server/task/File Server/task" />
+            <option value="$PROJECT_DIR$/File Server/task/build/classes/java" />
+            <option value="$PROJECT_DIR$/File Server/task/build/generated/sources/annotationProcessor/java" />
+            <option value="$PROJECT_DIR$/File Server/task/build/generated/sources/headers/java" />
+            <option value="$PROJECT_DIR$/File Server/task/build/reports/tests" />
+            <option value="$PROJECT_DIR$/File Server/task/build/test-results" />
+            <option value="$PROJECT_DIR$/File Server/task/build/tmp" />
+            <option value="$PROJECT_DIR$/Topics/File class/A relative path" />
+            <option value="$PROJECT_DIR$/Topics/File class/Are siblings" />
+            <option value="$PROJECT_DIR$/Topics/File class/Getting information" />
+            <option value="$PROJECT_DIR$/Topics/File class/Non-existing location" />
+            <option value="$PROJECT_DIR$/Topics/File class/Theory" />
+            <option value="$PROJECT_DIR$/Topics/File class/Сorrect statements" />
+            <option value="$PROJECT_DIR$/Topics/Input streams/Count words" />
+            <option value="$PROJECT_DIR$/Topics/Input streams/Decoding Java FileInputStream usage" />
+            <option value="$PROJECT_DIR$/Topics/Input streams/Discovering Java input streams" />
+            <option value="$PROJECT_DIR$/Topics/Input streams/Read into an array" />
+            <option value="$PROJECT_DIR$/Topics/Input streams/Reverse input text" />
+            <option value="$PROJECT_DIR$/Topics/Input streams/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Stack/Deque output" />
+            <option value="$PROJECT_DIR$/Topics/Stack/Getting the max element of a stack" />
+            <option value="$PROJECT_DIR$/Topics/Stack/Html Parser" />
+            <option value="$PROJECT_DIR$/Topics/Stack/Match methods" />
+            <option value="$PROJECT_DIR$/Topics/Stack/Methods" />
+            <option value="$PROJECT_DIR$/Topics/Stack/Stack implementation" />
+            <option value="$PROJECT_DIR$/Topics/Stack/The LIFO principle in action" />
+            <option value="$PROJECT_DIR$/Topics/Stack/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Stack/Using deque" />
+            <option value="$PROJECT_DIR$/Topics/Stack/Which brackets are balanced" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
