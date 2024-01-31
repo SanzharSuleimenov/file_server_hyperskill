@@ -28,7 +28,8 @@ public class FileIdTable implements Serializable {
     if (Files.exists(Path.of(RESOURCE_PATH + SERIALIZED_FILENAME))) {
       try (
           FileInputStream fis = new FileInputStream(RESOURCE_PATH + SERIALIZED_FILENAME);
-          ObjectInputStream ois = new ObjectInputStream(fis)
+          BufferedInputStream bis = new BufferedInputStream(fis);
+          ObjectInputStream ois = new ObjectInputStream(bis)
       ) {
         this.table = (Map<String, String>) ois.readObject();
       } catch (IOException | ClassNotFoundException e) {
@@ -61,22 +62,6 @@ public class FileIdTable implements Serializable {
     } catch (IOException e) {
       System.err.println("ID Table serialization exception: " + e.getMessage());
       throw new RuntimeException(e.getMessage());
-    }
-  }
-
-  public void deserialize() {
-    try (
-        FileInputStream fis = new FileInputStream(RESOURCE_PATH + SERIALIZED_FILENAME);
-        BufferedInputStream bis = new BufferedInputStream(fis);
-        ObjectInputStream ois = new ObjectInputStream(bis)
-    ) {
-      table = (Map<String, String>) ois.readObject();
-    } catch (IOException e) {
-      System.err.println("Couldn't deserialize ID Table: " + e.getMessage());
-      throw new RuntimeException(e.getMessage());
-    } catch (ClassNotFoundException e) {
-      System.err.println("Class not found when deserializing: " + e.getMessage());
-      throw new RuntimeException(e);
     }
   }
 

@@ -42,7 +42,6 @@ public class Server implements Serializable {
     try (ServerSocket serverSocket =
         new ServerSocket(8080, 50, InetAddress.getByName("localhost"))) {
       System.out.println("Server started!");
-      fileService.deserializeFileServiceData();
       while (!serverSocket.isClosed()) {
         Socket socket = serverSocket.accept();
         String method = new DataInputStream(socket.getInputStream()).readUTF();

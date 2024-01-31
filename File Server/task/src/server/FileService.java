@@ -113,8 +113,4 @@ public class FileService implements GetFile, DeleteFile, SaveFile, Serializable 
   public void serializeFileServiceData() {
     fileIdTable.serialize();
   }
-
-  public void deserializeFileServiceData() {
-
-  }
 }
